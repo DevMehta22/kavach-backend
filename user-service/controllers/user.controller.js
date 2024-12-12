@@ -17,7 +17,8 @@ const login = async(req,res)=>{
         if (!isMatch) return res.status(400).send({ msg: 'Invalid Password' });
         //create token
         jwt.sign(
-            {id:user._id},
+            {id:user._id,
+            role:user.role},
             process.env.SECRET_KEY ,
             {expiresIn:'3d'},
             (err,token)=> {
