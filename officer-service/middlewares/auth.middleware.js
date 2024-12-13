@@ -16,9 +16,9 @@ const checkAuth = (req, res, next) => {
     }
 };
 
-const isCivilian = (req,res,next) => {
+const isOfficer = (req,res,next) => {
     const user = req.user;
-    if(user.role != 'civilian'){
+    if(user.role != 'officer'){
         return res.status(403).json({ message: 'You are not authorised.' });
     }
     next();
@@ -32,4 +32,4 @@ const isAdmin = (req,res,next) => {
     next();
 }
 
-module.exports = {checkAuth,isCivilian,isAdmin}
+module.exports = {checkAuth,isOfficer,isAdmin}

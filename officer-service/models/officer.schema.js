@@ -1,6 +1,6 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
-const civilianSchema = new mongoose.Schema({
+const officerSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -12,6 +12,22 @@ const civilianSchema = new mongoose.Schema({
         trim: true,
     },
     lastName: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    badgeNumber: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true,
+    },
+    rank: {
+        type: String,
+        required: true,
+        enum: ['Constable', 'Sergeant', 'Inspector', 'Captain', 'Chief'], // Example ranks, modify as needed
+    },
+    department: {
         type: String,
         required: true,
         trim: true,
@@ -44,7 +60,18 @@ const civilianSchema = new mongoose.Schema({
             required: true,
         },
     },
-    registeredAt: {
+    assignedCases: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Case', // Refers to the Case model
+        },
+    ],
+    status: {
+        type: String,
+        enum: ['active', 'leave', 'retired'],
+        default: 'active',
+    },
+    hiredAt: {
         type: Date,
         default: Date.now,
     },
@@ -52,6 +79,6 @@ const civilianSchema = new mongoose.Schema({
         type: Boolean,
         default: false,
     },
-},{timestamps:true})
+},{timestamps:true});
 
-module.exports = mongoose.model('Civilian',civilianSchema);
+module.exports = mongoose.model('Officer', officerSchema);
