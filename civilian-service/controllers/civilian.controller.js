@@ -1,4 +1,4 @@
-const civilianSchema = require('../models/civlian.schema')
+const civilianSchema = require('../models/civilian.schema')
 
 const createProfile = async (req, res) => {
     try {
