@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const incidentSchema = new mongoose.Schema({
     civilianId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref:'Civilian',
         required: true,
     },
     type: {

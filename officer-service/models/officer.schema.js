@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const officerSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
         required: true,
     },
     firstName: {

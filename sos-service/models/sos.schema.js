@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const sosRequestSchema = new mongoose.Schema({
     civilianId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref:'Civilian',
         required: true,
     },
     location: {
