@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  user-service:
+    build: 
+      context: ./user-service
+      dockerfile: Dockerfile
+    container_name: user-service
+    ports:
+      - "3000:3000"
+  
+  civilian-service:
+    build: 
+      context: ./civilian-service
+      dockerfile: Dockerfile
+    container_name: civilian-service
+    ports:
+      - "3001:3001"
+
+  officer-service:
+    build: 
+      context: ./officer-service
+      dockerfile: Dockerfile
+    container_name: officer-service
+    ports:
+      - "3002:3002"
+
+  incident-service:
+    build: 
+      context: ./incident-service
+      dockerfile: Dockerfile
+    container_name: incident-service
+    ports:
+      - "3003:3003"
+
+  sos-service:
+    build: 
+      context: ./sos-service
+      dockerfile: Dockerfile
+    container_name: sos-service
+    ports:
+      - "3004:3004"
+
+  case-service:
+    build: 
+      context: ./case-service
+      dockerfile: Dockerfile
+    container_name: case-service
+    ports:
+      - "3005:3005"
