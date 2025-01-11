@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  PORT: "3003"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2025-01-01T20:46:07Z"
+  name: incident-service-config
+  namespace: kavach
+  resourceVersion: "25420"
+  uid: 65c5aa9a-fa05-4893-8cbe-c1ff14a2fe4c

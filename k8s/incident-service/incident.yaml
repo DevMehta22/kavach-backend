@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: incident-service
+  namespace: kavach
+  labels:
+    app: incident-service
+
+#Auto scaling - Auto Healing specifications
+spec:   
+  replicas: 2
+  selector:
+    matchLabels:
+      app: incident-service
+  template:
+    metadata:
+      labels:
+        app: incident-service
+    spec:
+      containers:
+        - name: incident-service
+          image: devmehta22/kavach-backend-incident-service:latest
+          ports:
+            - containerPort: 3003
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: incident-service-config
+                  key: PORT
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: incident-secret
+                  key: MONGO_URI
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: incident-secret
+                  key: SECRET_KEY
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: incident-service
+  namespace: kavach
+spec:
+  selector:
+    app: incident-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3003
+  type: ClusterIP
+
+            

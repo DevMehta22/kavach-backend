@@ -12,8 +12,6 @@ FROM node:22-slim
 
 COPY --from=builder /app .
 
-EXPOSE 3000
+EXPOSE 8000
 
-CMD [ "npm","run","dev" ]
-
-
+CMD ["npm","run","dev"]

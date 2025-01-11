@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: officer-service
+  namespace: kavach
+  labels:
+    app: officer-service
+
+#Auto scaling - Auto Healing specifications
+spec:   
+  replicas: 2
+  selector:
+    matchLabels:
+      app: officer-service
+  template:
+    metadata:
+      labels:
+        app: officer-service
+    spec:
+      containers:
+        - name: officer-service
+          image: devmehta22/kavach-backend-officer-service:latest
+          ports:
+            - containerPort: 3002
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: officer-service-config
+                  key: PORT
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: officer-secret
+                  key: MONGO_URI
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: officer-secret
+                  key: SECRET_KEY
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  namespace: kavach
+spec:
+  selector:
+    app: user-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3002
+  type: ClusterIP
+
+            

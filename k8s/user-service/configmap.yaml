@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  PORT: "3000"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2025-01-01T20:26:01Z"
+  name: user-service-config
+  namespace: kavach
+  resourceVersion: "24284"
+  uid: 21fa89a4-d5e7-416a-a8ae-dc7449156a98

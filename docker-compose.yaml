@@ -48,3 +48,11 @@ services:
     container_name: case-service
     ports:
       - "3005:3005"
+
+  api-gateway:
+    build: 
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+     - "8000:8000"

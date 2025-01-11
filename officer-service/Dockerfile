@@ -14,8 +14,6 @@ COPY --from=builder /app .
 
 EXPOSE 3002
 
-COPY .env.sample .env
-
 CMD [ "npm","run","dev" ]
 
 

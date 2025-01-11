@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sos-service
+  namespace: kavach
+  labels:
+    app: sos-service
+
+#Auto scaling - Auto Healing specifications
+spec:   
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sos-service
+  template:
+    metadata:
+      labels:
+        app: sos-service
+    spec:
+      containers:
+        - name: sos-service
+          image: devmehta22/kavach-backend-sos-service:latest
+          ports:
+            - containerPort: 3004
+          env:
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: sos-service-config
+                  key: PORT
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: sos-secret
+                  key: MONGO_URI
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: sos-secret
+                  key: SECRET_KEY
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sos-service
+  namespace: kavach
+spec:
+  selector:
+    app: sos-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3004
+  type: ClusterIP
+
+            

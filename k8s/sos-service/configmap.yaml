@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  PORT: "3004"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2025-01-01T20:41:52Z"
+  name: sos-service-config
+  namespace: kavach
+  resourceVersion: "25178"
+  uid: 5fddf06c-533b-4747-88ea-72a5d6bdb1c8
