@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: officer-service
-          image: devmehta22/kavach-backend-officer-service:latest
+          image: public.ecr.aws/e4t3d5j8/kavach-backend-officer-service
           ports:
             - containerPort: 3002
           env:

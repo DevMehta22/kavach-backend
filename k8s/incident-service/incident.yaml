@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: incident-service
-          image: devmehta22/kavach-backend-incident-service:latest
+          image: public.ecr.aws/e4t3d5j8/kavach-backend-incident-service
           ports:
             - containerPort: 3003
           env:

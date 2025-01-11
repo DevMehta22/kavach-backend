@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: sos-service
-          image: devmehta22/kavach-backend-sos-service:latest
+          image: public.ecr.aws/e4t3d5j8/kavach-backend-sos-service
           ports:
             - containerPort: 3004
           env:

@@ -1,4 +1,4 @@
-FROM node:22 as builder
+FROM --platform=linux/amd64 node:22 as builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN npm install
 
 COPY . .
 
-FROM node:22-slim
+FROM --platform=linux/amd64 node:22-slim
 
 COPY --from=builder /app .
 
